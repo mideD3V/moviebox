@@ -1,0 +1,56 @@
+#header{
+  padding: 8px 5rem;
+  display: flex;
+  justify-content: space-between;
+align-items: center;
+z-index: 5;
+position: fixed;
+width: 100%;
+}
+#search{
+    width: 40%;
+    display: flex;
+    align-items:center ;
+}
+#search input{
+    width: 100%;
+    justify-content: left;
+    text-align: left;
+    padding: 12px .5rem;
+    background: none;color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+}
+#search input::placeholder{
+    color: white;
+}
+#search-icon{
+    color: white;
+    margin-left: -2rem;
+}
+
+#account{
+    background-color: cadetblue;
+    color: white;
+    width: 15%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+#menu{
+    display: flex;
+    flex-direction: column;
+    background-color:red;
+    width: 50%;
+    gap: 8px;
+   border-radius: 50%;
+padding: 8px;    
+    align-items: center; 
+}
+.bar{
+   width: 80%;
+    border-top: 2px solid white;
+    
+}
