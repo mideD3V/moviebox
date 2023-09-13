@@ -4,13 +4,14 @@ import Logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
 
 import { BsSearch } from "react-icons/bs";
+import {HiMenuAlt4} from 'react-icons/hi'
 
 const Header = () => {
   return (
     <div id="header">
-      <div id="logo">
+      <Link to="/" id="logo">
         <img src={Logo} alt="moviebox logo" />
-      </div>
+      </Link>
       <div id="search">
         <input
           type="search"
@@ -30,8 +31,7 @@ const Header = () => {
       <div id="account">
         <p>Sign In</p>
         <div id="menu">
-          <span className="bar"> </span>
-          <span className="bar"> </span>
+          <HiMenuAlt4 id="hamburger" />
         </div>
       </div>
     </div>
