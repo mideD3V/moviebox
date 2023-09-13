@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import "./movies.css";
 import Logo2 from "../../assets/Logo2.png";
 import Poster from "../../assets/Poster1.png";
 import Imdb from "../../assets/imdb-logo.png";
 import Fruit from "../../assets/fruit1.png";
 import { Link } from "react-router-dom";
+import { getMovieDetail, IMAGE_BASE_URL, backdropSizes } from '../../microservice/tmdb';
 
 // For sidebar
 import { GrHomeRounded } from "react-icons/gr";
@@ -22,22 +24,33 @@ import Preview from "../../assets/trailer.png";
 import Star from "../../assets/Star.png";
 import Morepx from "../../assets/more.png";
 
-
-
-
-
-const Movies = () => {
+const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => {
+  const {id: movieId} = useParams();
+  const [movieDetail, setMovieDetail] = useState(undefined);
+  
+  
   //   const getMovie = () => {
-  //     fetch(
-  //       "https://api.themoviedb.org/3/discover/movie?api_key=d5c5ab889cf4861dca870380ef588fde"
-  //     )
-  //       .then((response) => response.json)
-  //       .then((data) => data);
-  // }
+    //     fetch(
+      //       "https://api.themoviedb.org/3/discover/movie?api_key=d5c5ab889cf4861dca870380ef588fde"
+      //     )
+      //       .then((response) => response.json)
+      //       .then((data) => data);
+      // }
+      
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+    const initData = async () => {
+      const movieDetailData = await getMovieDetail(movieId);
+      setMovieDetail(movieDetailData);
+    }
+    initData();
+  }, [movieId]);
 
-  //   useEffect(() => {
-  //   getMovie()
-  // })
+  if (!movieDetail) {
+    return <></>
+  }
 
   return (
     <div id="movies">
@@ -85,24 +98,25 @@ const Movies = () => {
         </Link>
       </div>
 
+
+
       {/* PREVIEW */}
       <div id="preview">
         <div className="preview_img">
-          <img src={Preview} alt="movie preview" />
+          <img src={`${IMAGE_BASE_URL}${backdropSizes.w1280}${movieDetail.backdrop_path}`} alt="movie preview" />
+          {/* <video src={videoUrl} /> */}
         </div>
 
         <div className="descriptions">
           <div className="movie_desc">
             <p className="movie_title">
-              <b>Top Gun: Maverick • 2022 • PG-13 • 2h 10m </b>
-              <span className="tag">Action</span>{" "}
-              <span className="tag">Drama</span>
+              <b>{movieDetail.title} • {new Date(movieDetail.release_date).getFullYear()} • PG-13 • {movieDetail.runtime} mins </b>
+              {
+                movieDetail.genres.map(({id, name}) => <span className="tag">{name}</span>)
+              }
             </p>
-            <p className="story"> yes yes
-              After thirty years, Maverick is still pushing the envelope as a
-              top naval aviator, but must confront ghosts of his past when he
-              leads TOP GUN's elite graduates on a mission that demands the
-              ultimate sacrifice from those chosen to fly it.
+            <p className="story">
+              {movieDetail.overview}
             </p>
             <p>
               Director : <span className="red"> Joseph Kosinski</span>
@@ -152,6 +166,7 @@ const Movies = () => {
                 <RiMenuAddLine />{" "}
               </span>
               More watch options
+    
             </Link>
             <img src={Morepx} alt="more" />
           </div>
@@ -162,11 +177,16 @@ const Movies = () => {
 };
 
 Movies.defaultProps = {
-  image: { Poster },
+  image: Poster,
+  runtime: '2:30',
   title: "Movie Title",
+  releaseYear: '2000',
   rating: "12%",
-  rating2: "72%",
+  directors: 'Director name',
+  
+  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio suscipit iure aliquid similique illo praesentium officia quas expedita. Provident doloremque tempore accusamus nobis architecto harum reiciendis labore, corporis molestias repellat." ,
   genre: "Action, Adventure, Thriller",
+  videoUrl: '',
 };
 
 export default Movies;

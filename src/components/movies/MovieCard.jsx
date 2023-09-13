@@ -3,35 +3,40 @@ import "./movies.css";
 import Poster from "../../assets/Poster1.png";
 import Imdb from "../../assets/imdb-logo.png";
 import Fruit from "../../assets/fruit1.png";
+import { Link } from "react-router-dom";
 
 
-const MovieCard = ({ title, genre }) => {
+const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomatoesRating }) => {
   return (
-    <div id="movie_card">
-      <img src={Poster} alt="" id="poster" />
-      <p className="location">USA, 2008</p>
+    <Link to={`/movies/${movieId}`} id="movie_card">
+      <img src={image} alt="" id="poster" />
+      <p className="location">Year - {new Date(releaseYear).getFullYear()}</p>
       <h3>{title}</h3>
       <div className="movie-rating">
         <div className="imdb">
           <img src={Imdb} alt="imdb rating" />
-          <span className="rate">86/100</span>
+          <span className="rate">{imdbRating / 100}/100</span>
         </div>
 
         <div className="imdb">
           <img src={Fruit} alt="fruit rating" id="fruit" />
-          <span className="rate">97%</span>
+          <span className="rate">{rottenTomatoesRating * 10}%</span>
         </div>
       </div>
-      <div id="movie-genre">{genre}</div>
-    </div>
+      {/* <div id="movie-genre">{genre}</div> */}
+    </Link>
   );
 };
 
 MovieCard.defaultProps = {
-  image: { Poster },
+  movieId: "id",
+  releaseYear: "2009",
+  image: Poster,
   title: "Movie Title",
-  rating: "12%",
-  rating2: "72%",
-  genre: "Action, Adventure, Thriller",
+  imdbRating: "12",
+  rottenTomatoesRating: "72",
+  // genre: "Action, Adventure, Thriller",
 };
 export default MovieCard;
+
+// d5c5ab889cf4861dca870380ef588fde

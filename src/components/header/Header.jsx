@@ -12,6 +12,9 @@ const Header = () => {
       <Link to="/" id="logo">
         <img src={Logo} alt="moviebox logo" />
       </Link>
+
+      
+      {/* SEARCH */}
       <div id="search">
         <input
           type="search"
@@ -28,6 +31,10 @@ const Header = () => {
           <BsSearch />
         </a>
       </div>
+
+      
+      
+      {/*  ACCOUNT */}
       <div id="account">
         <p>Sign In</p>
         <div id="menu">
