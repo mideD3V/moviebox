@@ -1,3 +1,31 @@
 .featured-title{
     display: flex;
 }
+
+#body{
+    padding: 5rem 7rem;
+}
+.featured-title{
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.featured-title p{
+    color: var(--rose-color);
+    font-size: 18px;
+}
+#movies-ctn{
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+#trailer_btn{
+color: var(--white);
+text-decoration: none;
+}
+#trailer_btn:hover{
+    text-decoration: underline;
+    background-color: brown;
+}

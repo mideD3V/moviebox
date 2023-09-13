@@ -1,7 +1,42 @@
 #hero{
-
-
+background-image: url('../../assets/Poster.png');
+background-size: cover;
+background-repeat: no-repeat;
+height: 80vh;
+padding: 10rem 5rem;
+margin-top:-5rem ;
 }
-#hero img{
-    opacity: .9;
+
+#hero_text{
+    display: flex;
+    flex-direction: column;
+    max-width: 26%;
+    height: max-content;
+    color: var(--white);
+    padding: 1rem;
+    gap: 1rem;
+}
+#trailer_btn{
+    display: flex;
+    width: max-content;
+    background-color: var(--rose-color);
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    font-weight: 700;
+}
+
+.play_icon{
+margin: 5px auto 0;
+}
+
+.movie-rating{
+    display: flex;
+    gap: 2rem;font-weight: 200;
+}
+.imdb{
+    display: flex;
+    gap: 8px;
 }

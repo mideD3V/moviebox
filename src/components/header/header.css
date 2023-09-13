@@ -4,7 +4,7 @@
   justify-content: space-between;
 align-items: center;
 z-index: 5;
-position: fixed;
+/* position: sticky; */
 width: 100%;
 }
 #search{
@@ -30,7 +30,6 @@ width: 100%;
 }
 
 #account{
-    background-color: cadetblue;
     color: white;
     width: 15%;
     padding: 0 1rem;
@@ -40,17 +39,13 @@ width: 100%;
     align-items: center;
 }
 #menu{
-    display: flex;
-    flex-direction: column;
-    background-color:red;
-    width: 50%;
-    gap: 8px;
-   border-radius: 50%;
-padding: 8px;    
-    align-items: center; 
+background-color: var(--rose-color);
+border-radius: 50%;
+padding: .5rem .75rem;
+cursor: pointer;
+margin: auto;
 }
-.bar{
-   width: 80%;
-    border-top: 2px solid white;
-    
+#hamburger{
+transform: scale(1.75);
+margin: auto;
 }
