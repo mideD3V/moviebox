@@ -118,17 +118,24 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
 
         <div className="descriptions">
           <div className="movie_desc">
-            <p className="movie_title">
-              <b>
+            <div className="movie_title">
+              <p data-testid="movie-title">
                 {movieDetail.title} •{" "}
-                {new Date(movieDetail.release_date).getFullYear()} • PG-13 •{" "}
-                {movieDetail.runtime} mins{" "}
-              </b>
+                <span data-testid="movie-release-date">
+                  {new Date(movieDetail.release_date).getFullYear()}
+                </span>
+                • PG-13 •{" "}
+                <span data-testid="movie-runtime">
+                  {movieDetail.runtime} mins
+                </span>
+              </p>
               {movieDetail.genres.map(({ id, name }) => (
                 <span className="tag">{name}</span>
               ))}
+            </div>
+            <p className="story" data-testid="movie-overview">
+              {movieDetail.overview}
             </p>
-            <p className="story">{movieDetail.overview}</p>
             <p>
               Director : <span className="red"> Joseph Kosinski</span>
             </p>

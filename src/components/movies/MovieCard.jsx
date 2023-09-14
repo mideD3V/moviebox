@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 
 const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomatoesRating }) => {
   return (
-    <Link to={`/movies/${movieId}`} id="movie_card">
-      <img src={image} alt="poster" id="poster" />
-      <p className="location">Year - {new Date(releaseYear).getFullYear()}</p>
-      <h3>{title}</h3>
+    <Link to={`/movies/${movieId}`} id="movie_card" data-testid="movie-card">
+      <img src={image} alt="poster" id="poster" data-testid="movie-poster" />
+      <p className="releaseYear" data-testid:movie="release-date">
+        Year - {new Date(releaseYear).getFullYear()}
+      </p>
+      <h3 data-testid="movie-title">{title}</h3>
       <div className="movie-rating">
         <div className="imdb">
           <img src={Imdb} alt="imdb rating" />
