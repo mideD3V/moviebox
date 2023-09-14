@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomatoesRating }) => {
   return (
     <Link to={`/movies/${movieId}`} id="movie_card">
-      <img src={image} alt="" id="poster" />
+      <img src={image} alt="poster" id="poster" />
       <p className="location">Year - {new Date(releaseYear).getFullYear()}</p>
       <h3>{title}</h3>
       <div className="movie-rating">

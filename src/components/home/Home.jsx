@@ -5,10 +5,11 @@ import {AiOutlineRight} from 'react-icons/ai'
 import MovieCard from '../movies/MovieCard';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import { getTopMovies, posterSizes, IMAGE_BASE_URL } from '../../microservice/tmdb';
+import { getTopMovies, posterSizes, IMAGE_BASE_URL, searchMovies } from '../../microservice/tmdb';
 
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
+
   useEffect(() => {
     const initData = async () => {
       const movies = await getTopMovies();
@@ -22,10 +23,27 @@ const Home = () => {
       initData();
     }
   }, [topMovies]);
+  
+  const loadSearchData = async (searchTerm) => {
+    try {
+      const movies = await searchMovies(searchTerm);
+      if (!movies) {
+        return;
+      }
+      setTopMovies(movies);
+    } catch (error) {
+      notifyUser('error','Could not search movies please try again later');
+    }
+  }
+
+  const notifyUser = () => {
+    // <Notification type={} message={}/>
+  }
+  
   return (
     <>
       {" "}
-      <Header />
+      <Header loadSearchData={loadSearchData} />
       <Hero />
       <div>
         <div id="body">

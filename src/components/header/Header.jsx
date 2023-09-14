@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import Logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
 
 import { BsSearch } from "react-icons/bs";
-import {HiMenuAlt4} from 'react-icons/hi'
+import {HiMenuAlt4} from 'react-icons/hi';
 
-const Header = () => {
+const Header = ({loadSearchData}) => {
+  const [searchTerm, setSearchTerm] = useState(undefined);
+
   return (
     <div id="header">
       <Link to="/" id="logo">
@@ -17,19 +19,19 @@ const Header = () => {
       {/* SEARCH */}
       <div id="search">
         <input
+          onChange={(e) => setSearchTerm(e.target.value)}
           type="search"
           name="search"
           id="searchbox"
           placeholder="What fo you want to watch?"
         />
-        <a
-          href="https://www.google.com"
-          target="_blank"
+        <button
           rel="noreferrer"
           id="search-icon"
+          onClick={() => loadSearchData(searchTerm)}
         >
           <BsSearch />
-        </a>
+        </button>
       </div>
 
       

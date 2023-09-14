@@ -23,6 +23,7 @@ import { BsChevronDown } from "react-icons/bs";
 import Preview from "../../assets/trailer.png";
 import Star from "../../assets/Star.png";
 import Morepx from "../../assets/more.png";
+import { TbPlayerPlayFilled } from "react-icons/tb"; 
 
 const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => {
   const {id: movieId} = useParams();
@@ -56,34 +57,34 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
     <div id="movies">
       {/* SIDE BAR */}
       <div id="sidebar">
-        <Link id="logo" to="/">
-          <img src={Logo2} alt="" />
+        <Link id="logo2" to="/">
+          <img src={Logo2} alt="Movie box logo (black)" />
         </Link>
 
         {/* Navlinks */}
         <div id="navlinks">
-          <Link to="/" classssName="navlink">
+          <Link to="/" className="navlink">
             <span className="icon">
               <GrHomeRounded />
             </span>
             Home
           </Link>
 
-          <Link to="/movies" classssName="navlink">
+          <Link to="/movies" className="navlink movieslink">
             <span className="icon">
               <BiCameraMovie />
             </span>
             Movies
           </Link>
 
-          <Link to="/tvseries" classssName="navlink">
+          <Link to="/tvseries" className="navlink">
             <span className="icon">
               <PiMonitorPlayThin />
             </span>
             TV Series
           </Link>
 
-          <Link to="/upcoming" classssName="navlink">
+          <Link to="/upcoming" className="navlink">
             <span className="icon">
               <SlCalender />
             </span>
@@ -98,26 +99,36 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
         </Link>
       </div>
 
-
-
       {/* PREVIEW */}
       <div id="preview">
         <div className="preview_img">
-          <img src={`${IMAGE_BASE_URL}${backdropSizes.w1280}${movieDetail.backdrop_path}`} alt="movie preview" />
+          <img
+            src={`${IMAGE_BASE_URL}${backdropSizes.w1280}${movieDetail.backdrop_path}`}
+            alt="movie preview"
+          />
+          <div id="playbtn">
+            <span className="play">
+              {" "}
+              <TbPlayerPlayFilled className="playIcon" />{" "}
+            </span>
+            <p>Watch Trailer</p>
+          </div>
           {/* <video src={videoUrl} /> */}
         </div>
 
         <div className="descriptions">
           <div className="movie_desc">
             <p className="movie_title">
-              <b>{movieDetail.title} • {new Date(movieDetail.release_date).getFullYear()} • PG-13 • {movieDetail.runtime} mins </b>
-              {
-                movieDetail.genres.map(({id, name}) => <span className="tag">{name}</span>)
-              }
+              <b>
+                {movieDetail.title} •{" "}
+                {new Date(movieDetail.release_date).getFullYear()} • PG-13 •{" "}
+                {movieDetail.runtime} mins{" "}
+              </b>
+              {movieDetail.genres.map(({ id, name }) => (
+                <span className="tag">{name}</span>
+              ))}
             </p>
-            <p className="story">
-              {movieDetail.overview}
-            </p>
+            <p className="story">{movieDetail.overview}</p>
             <p>
               Director : <span className="red"> Joseph Kosinski</span>
             </p>
@@ -131,6 +142,7 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
                 Tom Cruise, Jennifer Connelly, Miles Teller
               </span>
             </p>
+            <br />
             <div className="top-rated">
               <span className="top">Top rated movie #65</span>
               <select htmlFor="">
@@ -166,7 +178,6 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
                 <RiMenuAddLine />{" "}
               </span>
               More watch options
-    
             </Link>
             <img src={Morepx} alt="more" />
           </div>
@@ -176,6 +187,9 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
   );
 };
 
+
+
+// DEFAULT PROPERTIES
 Movies.defaultProps = {
   image: Poster,
   runtime: '2:30',
