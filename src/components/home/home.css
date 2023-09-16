@@ -42,9 +42,10 @@
     padding: 1rem;
   }
   #movies-ctn {
-    width: 80%;
+    width: 100%;
     grid-template-columns: auto;
-    margin: 0 auto;
+    margin: 1rem auto;
+    gap: 1rem;
   }
   .featured-title {
     flex-direction: column;
