@@ -24,6 +24,7 @@ import Preview from "../../assets/trailer.png";
 import Star from "../../assets/Star.png";
 import Morepx from "../../assets/more.png";
 import { TbPlayerPlayFilled } from "react-icons/tb"; 
+import {MdArrowBackIos} from 'react-icons/md'
 
 const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => {
   const {id: movieId} = useParams();
@@ -101,6 +102,9 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
 
       {/* PREVIEW */}
       <div id="preview">
+        <Link to="/" className="back-home">
+          <MdArrowBackIos /> <span> back</span>
+        </Link>
         <div className="preview_img">
           <img
             src={`${IMAGE_BASE_URL}${backdropSizes.w1280}${movieDetail.backdrop_path}`}

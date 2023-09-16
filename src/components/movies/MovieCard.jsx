@@ -4,20 +4,23 @@ import Poster from "../../assets/Poster1.png";
 import Imdb from "../../assets/imdb-logo.png";
 import Fruit from "../../assets/fruit1.png";
 import { Link } from "react-router-dom";
+import {FcLike} from 'react-icons/fc'
 
 
 const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomatoesRating }) => {
   return (
     <Link to={`/movies/${movieId}`} id="movie_card" data-testid="movie-card">
+      <span className="like-btn"> <FcLike/> </span>
       <img src={image} alt="poster" id="poster" data-testid="movie-poster" />
       <p className="releaseYear" data-testid="movie-release-date">
         Year - {new Date(releaseYear).getFullYear()}
       </p>
+
       <h3 data-testid="movie-title">{title}</h3>
       <div className="movie-rating">
         <div className="imdb">
           <img src={Imdb} alt="imdb rating" />
-          <span className="rate">{Math.trunc(imdbRating) / 100}/100</span>
+          <span className="rate">{Math.trunc(imdbRating) / 20}/100</span>
         </div>
 
         <div className="imdb">
@@ -32,7 +35,7 @@ const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomat
 
 MovieCard.defaultProps = {
   movieId: "id",
-  releaseYear: "2009",
+  releaseYear: "2000",
   image: Poster,
   title: "Movie Title",
   imdbRating: "12",

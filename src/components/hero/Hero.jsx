@@ -20,7 +20,7 @@ const Hero = () => {
           </div>
 
           <div className="imdb">
-            <img src={Fruit} alt="fruit rating" />
+            <img src={Fruit} alt="fruit rating" className='tomato'/>
             <span className="rate">97%</span>
           </div>
         </div>

@@ -41,11 +41,11 @@ const Home = () => {
   }
   
   return (
-    <>
+    <div id='home'>
       {" "}
       <Header loadSearchData={loadSearchData} />
       <Hero />
-      <div>
+    
         <div id="body">
           <div className="featured-title">
             <h1>Featured Movie</h1>
@@ -62,9 +62,9 @@ const Home = () => {
             {topMovies.map(movie => <MovieCard movieId={movie.id} image={`${IMAGE_BASE_URL}${posterSizes.w154}${movie.poster_path}`} title={movie.title} imdbRating={movie.popularity} rottenTomatoesRating={movie.vote_average} />)}
           </div>
         </div>
-      </div>
+      
       <Footer/>
-    </>
+    </div>
   );
 }
 
