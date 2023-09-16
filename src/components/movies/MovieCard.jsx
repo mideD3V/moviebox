@@ -4,13 +4,29 @@ import Poster from "../../assets/Poster1.png";
 import Imdb from "../../assets/imdb-logo.png";
 import Fruit from "../../assets/fruit1.png";
 import { Link } from "react-router-dom";
-import {FcLike} from 'react-icons/fc'
 
 
-const MovieCard = ({ image, title, movieId, releaseYear, imdbRating, rottenTomatoesRating }) => {
+import { AiOutlineHeart } from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
+
+const MovieCard = ({
+  image,
+  title,
+  movieId,
+  releaseYear,
+  imdbRating,
+  rottenTomatoesRating,
+}) => {
   return (
     <Link to={`/movies/${movieId}`} id="movie_card" data-testid="movie-card">
-      <span className="like-btn"> <FcLike/> </span>
+      
+      
+      {/* Like Button */}
+      <span className="like-btn">
+        <AiOutlineHeart />
+      </span>
+
+      {/* movie poster and details*/}
       <img src={image} alt="poster" id="poster" data-testid="movie-poster" />
       <p className="releaseYear" data-testid="movie-release-date">
         Year - {new Date(releaseYear).getFullYear()}
