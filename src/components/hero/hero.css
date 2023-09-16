@@ -16,6 +16,10 @@
   padding: 1rem;
   gap: 1rem;
 }
+.tomato {
+  transform: scale(0.7);
+}
+
 #trailer_btn {
   display: flex;
   width: max-content;
@@ -45,6 +49,7 @@
 @media screen and (max-width: 450px) {
   #hero {
     padding: 10rem 1rem;
+    height: max-content;
   }
   #hero_text {
     padding: 0;
@@ -52,5 +57,12 @@
   }
   #hero_text h1 {
     font-size: 30px;
+    max-width: 70%;
+  }
+  .tomato {
+    transform: scale(0.7);
+  }
+  #hero_description p {
+    line-height: 2;
   }
 }
