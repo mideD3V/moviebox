@@ -1,11 +1,17 @@
 #header {
-  padding: 8px 5rem;
+  padding: 1rem 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 5;
   /* position: sticky; */
   width: 100%;
+}
+  .logoBigScreen{
+    display: flex;
+  }
+.logoSmallScreen{
+  display: none;
 }
 #search {
   width: 40%;
@@ -35,6 +41,7 @@
   padding: 1rem;
   background: none;
   border: none;
+cursor: pointer;
 }
 
 #account {
@@ -67,10 +74,18 @@
     display: none;
   }
   #search {
-    position: absolute;
+    /* position: absolute;
     top: 10%;
-    left: 15%;
-    width: 75%;
+    left: 15%; */
+    width: 65%;
+    min-width: max-content;
     margin: 0 auto;
   }
+  .logoBigScreen{
+    display: none;
+  }
+.logoSmallScreen{
+  display: flex;
+}
+
 }
