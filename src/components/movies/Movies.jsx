@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import "./movies.css";
 import Logo2 from "../../assets/Logo2.png";
 import Poster from "../../assets/Poster1.png";
-import Imdb from "../../assets/imdb-logo.png";
-import Fruit from "../../assets/fruit1.png";
 import { Link } from "react-router-dom";
-import { getMovieDetail, IMAGE_BASE_URL, backdropSizes } from '../../microservice/tmdb';
+import Loader from "../../components/loader/Loader";
+
+import {
+  getMovieDetail,
+  IMAGE_BASE_URL,
+  backdropSizes,
+} from "../../microservice/tmdb";
 
 // For sidebar
 import { GrHomeRounded } from "react-icons/gr";
@@ -18,27 +22,25 @@ import { GiTicket } from "react-icons/gi";
 import { RiMenuAddLine } from "react-icons/ri";
 import { BsChevronDown } from "react-icons/bs";
 
-
 // For preview
 import Preview from "../../assets/trailer.png";
 import Star from "../../assets/Star.png";
 import Morepx from "../../assets/more.png";
-import { TbPlayerPlayFilled } from "react-icons/tb"; 
-import {MdArrowBackIos} from 'react-icons/md'
+import { TbPlayerPlayFilled } from "react-icons/tb";
+import { MdArrowBackIos } from "react-icons/md";
 
-const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => {
-  const {id: movieId} = useParams();
+const Movies = ({
+  title,
+  releaseYear,
+  description,
+  genre,
+  videoUrl,
+  runtime,
+}) => {
+  const { id: movieId } = useParams();
   const [movieDetail, setMovieDetail] = useState(undefined);
-  
-  
-  //   const getMovie = () => {
-    //     fetch(
-      //       "https://api.themoviedb.org/3/discover/movie?api_key=d5c5ab889cf4861dca870380ef588fde"
-      //     )
-      //       .then((response) => response.json)
-      //       .then((data) => data);
-      // }
-      
+
+
   useEffect(() => {
     if (!movieId) {
       return;
@@ -46,15 +48,26 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
     const initData = async () => {
       const movieDetailData = await getMovieDetail(movieId);
       setMovieDetail(movieDetailData);
-    }
+    };
     initData();
   }, [movieId]);
 
-  if (!movieDetail) {
-    return <></>
-  }
+  // Use state for loader
+  const [getLoader, setGetLoader] = useState(true);
 
-  return (
+  //create an async method to fetch data
+  useEffect(() => {
+    setTimeout(() => {
+      setGetLoader(false);
+    }, 4000);
+  });
+
+  if (!movieDetail) {
+    return <></>;
+  }
+  return getLoader ? (
+    <Loader />
+  ) : (
     <div id="movies">
       {/* SIDE BAR */}
       <div id="sidebar">
@@ -198,20 +211,19 @@ const Movies = ({title, releaseYear, description, genre, videoUrl, runtime}) => 
   );
 };
 
-
-
 // DEFAULT PROPERTIES
 Movies.defaultProps = {
   image: Poster,
-  runtime: '2:30',
+  runtime: "2:30",
   title: "Movie Title",
-  releaseYear: '2000',
+  releaseYear: "2000",
   rating: "12%",
-  directors: 'Director name',
-  
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio suscipit iure aliquid similique illo praesentium officia quas expedita. Provident doloremque tempore accusamus nobis architecto harum reiciendis labore, corporis molestias repellat." ,
+  directors: "Director name",
+
+  description:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio suscipit iure aliquid similique illo praesentium officia quas expedita. Provident doloremque tempore accusamus nobis architecto harum reiciendis labore, corporis molestias repellat.",
   genre: "Action, Adventure, Thriller",
-  videoUrl: '',
+  videoUrl: "",
 };
 
 export default Movies;

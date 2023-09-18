@@ -9,6 +9,8 @@ import Home from "./components/home/Home";
 import { useEffect } from "react";
 
 function App() {
+
+  // Use state for loader
   const [getLoader, setGetLoader] = useState(true);
 
   //create an async method to fetch data

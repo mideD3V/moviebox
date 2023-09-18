@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./header.css";
 import Logo from "../../assets/Logo.png";
+import Logo2 from "../../assets/tv.png";
+
 import { Link } from "react-router-dom";
 
 import { BsSearch } from "react-icons/bs";
@@ -12,7 +14,8 @@ const Header = ({loadSearchData}) => {
   return (
     <div id="header">
       <Link to="/" id="logo">
-        <img src={Logo} alt="moviebox logo" />
+        <img src={Logo} alt="moviebox logo" className="logoBigScreen"/>
+        <img src={Logo2} alt="moviebox logo" className="logoSmallScreen" />
       </Link>
 
       
